@@ -1,0 +1,23 @@
+<div class="conteiner cont-login">  
+  <main class="main-login">
+
+      <div>
+        <h2>Ingrese sus credenciales</h2>
+        <label>Email</label>
+        <input type="email" [(ngModel)]='email' placeholder="ejemplo@mail.com">      
+        <label>Password</label>
+        <input type="password" id="passInput" [(ngModel)]='pass'>
+      </div>    
+
+      <div>
+        <button type="button" class="btn btn-primary" (click)="ClickIngresar()">Ingresar</button>
+      </div>              
+
+  </main> 
+</div>
+
+      <!-- <input type="email" [(ngModel)]='email'>      
+      <input type="password" [(ngModel)]='pass'>
+      <button type="button" class="btn btn-primary">Primary</button> -->
+  
+
