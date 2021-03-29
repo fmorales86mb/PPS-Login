@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pps-login-26e7c": {
+      "hosting": {
+        "app": [
+          "pps-login-26e7c"
+        ]
+      }
+    }
+  }
+}
