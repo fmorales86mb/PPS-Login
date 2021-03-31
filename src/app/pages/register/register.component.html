@@ -1,0 +1,29 @@
+<div class="conteiner cont-registro">  
+  <main class="main-registro">
+
+      <div>
+        <h1>Sólo necesitamos estos datos</h1>
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]='email' placeholder="Luis Emilio Recabarren"> 
+        <label>Email</label>
+        <input type="email" [(ngModel)]='email' placeholder="ejemplo@mail.com">      
+        <label>Contraseña</label>
+        <input type="password" id="passInput" [(ngModel)]='pass'>
+        <label>Confirme la Contraseña</label>
+        <input type="password" id="passInput" [(ngModel)]='pass'>
+      </div>    
+
+      <div>
+        <button type="button" class="btn btn-primary" (click)="ClickIngresar()">Registrarse</button>
+      </div>              
+
+      <p>
+        <small>¿Ya tenés una cuenta? <a href="/login">Ingresá</a></small>
+      </p>
+      <div class="text-center" id="spinner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+  </main> 
+</div>

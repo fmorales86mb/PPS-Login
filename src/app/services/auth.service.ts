@@ -1,33 +1,40 @@
 import { Injectable } from '@angular/core';
 import { RepositoryService } from './repository.service';
-
+import { Credential } from '../models/credential';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   
-  constructor(private service: RepositoryService) { }
+  private userId;
 
-  public Ingresar(email: string, pass: string): boolean{
+  constructor(private authDb: AngularFireAuth) { }
 
-    console.log(this.service.Authenticate());
-    //console.log(this.service.GetAll());
-    //this.service.SetItem();
-
-
-    if(email == null && pass == null){
-      throw "Debe ingresar email y contraseña";
-    }
-    if(email == null){
-      throw "Debe ingresar su email";
-    }
-    if(pass == null){
-      throw "Debe ingresar la contraseña";
-    }
-    
-    //validar
-    return true;
+  public async Ingresar(credential: Credential): Promise<boolean>{           
+    return await this.Authenticate(credential);
   }
 
+  public GetUserId(){
+    return this.userId;
+  }
+
+  private async Authenticate(credential: Credential): Promise<boolean>{    
+    
+    await this.authDb.signInWithEmailAndPassword(credential.GetEmail(), credential.GetPass())
+    .then((userCredential) => {
+      // Signed in
+      this.userId = userCredential.user.uid;
+      //console.log("service: ", userCredential.user);
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);      
+    });
+
+    return true;
+  }
 }

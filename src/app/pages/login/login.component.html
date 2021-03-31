@@ -2,10 +2,10 @@
   <main class="main-login">
 
       <div>
-        <h2>Ingrese sus credenciales</h2>
+        <h1>Bienvenid@</h1>
         <label>Email</label>
         <input type="email" [(ngModel)]='email' placeholder="ejemplo@mail.com">      
-        <label>Password</label>
+        <label>Contraseña</label>
         <input type="password" id="passInput" [(ngModel)]='pass'>
       </div>    
 
@@ -13,11 +13,14 @@
         <button type="button" class="btn btn-primary" (click)="ClickIngresar()">Ingresar</button>
       </div>              
 
+      <p>
+        <small>¿No tenés cuenta todavía? <a href="/register">Registrate</a></small>
+      </p>
+
+      <div class="text-center" id="spinner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
   </main> 
 </div>
-
-      <!-- <input type="email" [(ngModel)]='email'>      
-      <input type="password" [(ngModel)]='pass'>
-      <button type="button" class="btn btn-primary">Primary</button> -->
-  
-
