@@ -22,19 +22,22 @@ export class AuthService {
   }
 
   private async Authenticate(credential: Credential): Promise<boolean>{    
-    
+    let isAuth:boolean;
+
     await this.authDb.signInWithEmailAndPassword(credential.GetEmail(), credential.GetPass())
     .then((userCredential) => {
       // Signed in
       this.userId = userCredential.user.uid;
+      isAuth = true;
       //console.log("service: ", userCredential.user);
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorCode, errorMessage);      
+      console.log(errorCode, errorMessage); 
+      isAuth = false;     
     });
 
-    return true;
+    return isAuth;
   }
 }
