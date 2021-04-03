@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { RepositoryService } from './repository.service';
 import { Credential } from '../models/credential';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { RegisterCredential } from '../models/registerCredential';
+import { promise } from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,26 @@ export class AuthService {
 
   public async Ingresar(credential: Credential): Promise<boolean>{           
     return await this.Authenticate(credential);
+  }
+
+  public async Registrarse(credential: RegisterCredential):Promise<boolean>{
+    let isReg:boolean;
+
+    await this.authDb.createUserWithEmailAndPassword(credential.GetEmail(), credential.GetPass())
+      .then((userCredential) => {
+        // Signed in
+        this.userId = userCredential.user.uid;
+        isReg = true;
+        // ...
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage); 
+        isReg = false;     
+      });
+
+      return isReg;
   }
 
   public GetUserId(){
